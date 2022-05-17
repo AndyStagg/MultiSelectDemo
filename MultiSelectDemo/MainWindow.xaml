@@ -7,8 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:CustomDataGrid ItemsSource="{Binding MyItems}" MultiSelectedItems="{Binding MySelectedItems}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <DataGrid Grid.Row="0"
+                  ItemsSource="{Binding MyItems}"
+                  local:MultipleSelectedItemsBehaviour.MultipleSelectedItems="{Binding MySelectedItems}" >
             
-        </local:CustomDataGrid>
+        </DataGrid>
+
+        <TextBlock Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   Text="{Binding SelectionCount, StringFormat=Selected Items {0}}" />
     </Grid>
 </Window>
